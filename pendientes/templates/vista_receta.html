@@ -39,6 +39,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/darkmode.css' %}" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: Imperial
@@ -46,7 +47,8 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
   ======================================================= -->
-  
+  <script>if(localStorage.getItem('karupora-dark-mode')==='true')document.documentElement.classList.add('dark-mode-preload');</script>
+  <style>.dark-mode-preload body{background:#121212!important;}</style>
 </head>
 
 <body>
@@ -64,18 +66,15 @@
       </div>
 
       <nav id="nav-menu-container">
-        
+
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#hero">Inicio</a></li>
-          <li><a href="#portfolio">Tradicionales del Paraguay</a></li>
-          <li><a href="#about">Hablemos más</a></li>
-          <li><a href="#team">Equipo Karu</a></li>         
+          <li><a href="/recetas">Inicio</a></li>
           <li><a href="/lista_recetas">Lista Recetas</a></li>
           <li><a href="/semanal">Elegi tu Menu</a></li>
-          <li><a href="/registro">Registro</a></li>
-          
+
         </ul>
       </nav>
+      <button id="dark-mode-toggle" title="Modo oscuro">🌙</button>
       <!-- #nav-menu-container -->
     </div>
   </header>
@@ -243,6 +242,7 @@
 
   <!-- Template Specisifc Custom Javascript File -->
   <script src="/static/js/custom.js"></script>
+  <script src="/static/js/darkmode.js"></script>
 
   <script src="/static/contactform/contactform.js"></script>
 
