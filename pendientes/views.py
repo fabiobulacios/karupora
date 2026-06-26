@@ -42,21 +42,14 @@ def semanal(request):
 
 def receta_detalles(request, num):
         receta = Receta.objects.get(id=num)
-        cantidad_total = []
-        for ingrediente in receta.insumos.all():
-                #Descubri ACA COMO SE CONECTA CON EL VISTARECETA.HTML Y SU MODELS ES INSUMO.
-                cantidad_total.append(ingrediente.cantidad_insumo)
-                print(cantidad_total) #Veo que existe la lista 
-        mult2= 0
-        for x in cantidad_total: #Recorro uno por uno
-                mult2 = x * 2 
-                
-        mult10=0
-        for x in cantidad_total: #DESCUBRI QUE SOLO ME MUESTRA EL ULTIMO DATO DEL FOR. WHY? NPI
-                #AVERIGUARCOMO ARREGLAR MAÑANA
-                mult10 = x * 10
-                        
-        return render(request, 'vista_receta.html', {'receta':receta, 'dictionario':{'totalx2':mult2, 'totalx10': mult10} })
+        insumos_escalados = []
+        for insumo in receta.insumos.all():
+                insumos_escalados.append({
+                        'insumo': insumo,
+                        'x2': insumo.cantidad_insumo * 2,
+                        'x10': insumo.cantidad_insumo * 10,
+                })
+        return render(request, 'vista_receta.html', {'receta': receta, 'insumos_escalados': insumos_escalados})
 
 def busqueda(request, buscar):
         buscarte = Receta.objects.filter(nombre_receta__icontains=buscar)
